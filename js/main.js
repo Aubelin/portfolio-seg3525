@@ -1,14 +1,13 @@
 /**
  * SEG3525 – Devoir 1 · Portfolio de Benny Aubelin Cubahiro
- * JavaScript — interactions & animations V2
+ * JavaScript — interactions & animations
  * ─────────────────────────────────────────────────────────────
  * 1. Navbar opaque au scroll
  * 2. Lien actif selon la section visible (IntersectionObserver)
  * 3. Animations d'apparition avec délai de cascade
  * 4. Barre de progression de lecture
  * 5. Fermeture du menu hamburger après clic (mobile)
- * 6. Typewriter effect — sous-titre héro
- * 7. Counter animation — stats identitaires
+ * 6. Counter animation — stats identitaires
  */
 
 
@@ -39,7 +38,6 @@ sections.forEach(s => sectionObserver.observe(s));
 
 
 // ─── 3. ANIMATIONS D'APPARITION avec cascade ─────────────────
-// Assigne des délais de cascade aux cartes dans les grilles
 document.querySelectorAll('.row').forEach(row => {
   const cards = row.querySelectorAll('.animate-on-scroll');
   cards.forEach((card, i) => {
@@ -98,62 +96,13 @@ if (navCollapse) {
 }
 
 
-// ─── 6. TYPEWRITER EFFECT — sous-titre héro ──────────────────
-const typewriterEl = document.getElementById('typewriter');
-
-if (typewriterEl) {
-  const words = [
-    'Développeur Full-Stack',
-    'Ingénieur Logiciel',
-    'Builder de produits',
-    'React · Django · PostgreSQL',
-    'Bilingue FR / EN',
-  ];
-
-  let wordIndex  = 0;
-  let charIndex  = 0;
-  let isDeleting = false;
-
-  function typewrite() {
-    const currentWord = words[wordIndex];
-
-    if (isDeleting) {
-      typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    let delay = isDeleting ? 55 : 110;
-
-    // Fin de frappe → pause avant effacement
-    if (!isDeleting && charIndex === currentWord.length) {
-      delay = 2200;
-      isDeleting = true;
-    }
-    // Fin d'effacement → passer au mot suivant
-    else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      wordIndex  = (wordIndex + 1) % words.length;
-      delay = 380;
-    }
-
-    setTimeout(typewrite, delay);
-  }
-
-  // Lancer après un court délai pour que la page soit prête
-  setTimeout(typewrite, 900);
-}
-
-
-// ─── 7. COUNTER ANIMATION — stats identitaires ───────────────
+// ─── 6. COUNTER ANIMATION — stats ────────────────────────────
 function animateCounter(el) {
   const target = parseInt(el.dataset.target, 10);
-  if (isNaN(target)) return; // skip stat-text (FR/EN, Fall 2026)
+  if (isNaN(target)) return;
 
-  const duration   = 1400; // ms
-  const frameRate  = 16;   // ~60fps
+  const duration   = 1200;
+  const frameRate  = 16;
   const totalSteps = duration / frameRate;
   const increment  = target / totalSteps;
   let   current    = 0;
@@ -169,7 +118,6 @@ function animateCounter(el) {
   }, frameRate);
 }
 
-// Observer dédié aux stat-cards pour déclencher le compteur
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -187,6 +135,6 @@ document.querySelectorAll('.stat-card').forEach(card => {
 
 // ─── Console signature ────────────────────────────────────────
 console.log(
-  '%c Portfolio · Benny Aubelin Cubahiro ✓ ',
+  '%c Portfolio · Benny Aubelin Cubahiro ',
   'background:#E94F37;color:#fff;font-weight:bold;padding:4px 10px;border-radius:4px;'
 );

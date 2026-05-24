@@ -3,25 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Benny Aubelin Cubahiro — Ingénieur logiciel full-stack en formation à l'Université d'Ottawa. React, Django, PostgreSQL. Disponible co-op automne 2026." />
-  <title>Benny Aubelin Cubahiro — Ingénieur Logiciel · Portfolio</title>
+  <meta name="description" content="Benny Aubelin Cubahiro — Étudiant en génie logiciel à l'Université d'Ottawa. React, Django, PostgreSQL. Co-op automne 2026." />
+  <title>Benny Aubelin Cubahiro — Portfolio</title>
 
-  <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <!-- Google Fonts : Poppins (titres) + Inter (corps) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <!-- CSS personnalisé -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
   <!-- ═══════════════════════════════════════════════════════════════
-       NAVIGATION – fixed-top, devient opaque au scroll
+       NAVIGATION
   ════════════════════════════════════════════════════════════════ -->
   <nav class="navbar navbar-expand-lg fixed-top" id="main-nav">
     <div class="container">
@@ -36,7 +32,7 @@
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto gap-2">
           <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#work">Philosophie</a></li>
+          <li class="nav-item"><a class="nav-link" href="#work">Profil</a></li>
           <li class="nav-item"><a class="nav-link" href="#cases">Projets</a></li>
           <li class="nav-item">
             <a class="btn btn-outline-primary btn-sm" href="#contact">
@@ -50,43 +46,35 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
-       SECTION HÉRO
-       Hiérarchie visuelle : H1 > typewriter > tagline > CTA
-       Équilibre : 2 colonnes asymétriques (7/12 texte, 5/12 photo)
-       Animation : typewriter sur le sous-titre, grid background
+       HÉRO
+       Hiérarchie : H1 > sous-titre > paragraphe > CTA
+       Équilibre asymétrique : 7/12 texte · 5/12 photo
   ════════════════════════════════════════════════════════════════ -->
   <section id="hero" class="min-vh-100 d-flex align-items-center">
     <div class="container">
       <div class="row align-items-center g-5">
 
-        <!-- Texte de présentation -->
         <div class="col-lg-7">
-
-          <!-- Badge de localisation + disponibilité -->
           <p class="hero-location mb-3">
             <span class="location-dot"></span>
             Ottawa, ON &nbsp;·&nbsp; Co-op disponible
             <span class="badge badge-available ms-2">Automne 2026</span>
           </p>
 
-          <!-- Titre principal -->
           <h1 class="fw-bold mb-3 hero-name">
             Benny Aubelin<br>
             <span class="text-primary">Cubahiro</span>
           </h1>
 
-          <!-- Ligne typewriter -->
-          <p class="hero-typewriter-line mb-4">
-            <span id="typewriter"></span><span class="typewriter-cursor" aria-hidden="true">|</span>
+          <p class="hero-subtitle mb-3">
+            Développeur Full-Stack avec un intérêt pour l'UX
           </p>
 
-          <!-- Tagline signature -->
           <p class="hero-tagline mb-5">
-            Je construis des applications web qui fonctionnent —
-            et des interfaces que les gens comprennent réellement.
+            J'aime construire des applications robustes tout en réfléchissant
+            à l'expérience utilisateur et à la qualité des interfaces.
           </p>
 
-          <!-- CTA principal + secondaire -->
           <div class="d-flex flex-wrap gap-3 mb-4">
             <a href="#cases" class="btn btn-primary btn-lg px-4">
               <i class="bi bi-grid-3x3-gap me-2"></i>Voir mes projets
@@ -96,7 +84,6 @@
             </a>
           </div>
 
-          <!-- Liens sociaux inline dans le héro -->
           <div class="d-flex gap-3 mt-2">
             <a href="https://github.com/Aubelin" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
               <i class="bi bi-github fs-4"></i>
@@ -110,7 +97,6 @@
           </div>
         </div>
 
-        <!-- Photo de profil -->
         <div class="col-lg-5 text-center">
           <div class="hero-photo-wrapper mx-auto">
             <img
@@ -124,7 +110,6 @@
       </div>
     </div>
 
-    <!-- Indicateur de défilement -->
     <a href="#about" class="scroll-indicator" aria-label="Défiler vers le bas">
       <i class="bi bi-chevron-down"></i>
     </a>
@@ -132,69 +117,52 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
-       SECTION À PROPOS  (#about)
+       À PROPOS
        Exigence du devoir : qui vous êtes, ce que vous aimez
-       Storytelling émotionnel — style "startup / human"
-       Stats identitaires : pas des chiffres vides, des valeurs
+       Équilibre : 8/12 texte · 4/12 stats
   ════════════════════════════════════════════════════════════════ -->
   <section id="about" class="py-section bg-section-alt">
     <div class="container">
 
       <div class="section-header text-center mb-5">
-        <h2 class="section-title">À propos de moi</h2>
+        <h2 class="section-title">À propos</h2>
         <div class="section-divider mx-auto"></div>
       </div>
 
       <div class="row align-items-start g-5">
 
-        <!-- Texte biographique — version émotionnelle/startup -->
         <div class="col-lg-8">
           <p class="fs-5 mb-4">
-            J'ai construit ma première application full-stack seul — pas parce que
-            c'était demandé. React côté client, Django côté serveur, PostgreSQL en base.
-            Parce que je voulais savoir ce que ça fait vraiment de construire un produit
-            de bout en bout. <strong>Sans filet.</strong>
+            Je suis étudiant en génie logiciel à l'Université d'Ottawa.
           </p>
           <p class="fs-5 mb-4">
-            Je suis en <strong>génie logiciel</strong> à l'Université d'Ottawa
-            (B.A.Sc., 2024–présent), et je suis un cours de
-            <strong>conception d'interfaces</strong> (SEG3525) qui m'apprend à voir
-            le code autrement — pas comme une liste d'instructions, mais comme
-            un dialogue entre un système et un être humain.
-            Ce mix technique&nbsp;+&nbsp;design, c'est ce qui m'intéresse vraiment.
+            Je développe principalement des applications web avec
+            <strong>React</strong>, <strong>Django</strong> et <strong>PostgreSQL</strong>,
+            avec un intérêt particulier pour les interfaces simples,
+            claires et faciles à utiliser.
           </p>
           <p class="fs-5 mb-4">
-            Je cherche un <strong>stage co-op pour l'automne 2026</strong>.
-            Je veux travailler dans une équipe qui construit des produits qui comptent —
-            où ce qu'on livre est utilisé, critiqué, amélioré.
-            Bilingue <strong>FR/EN</strong>. J'apprends vite. Je travaille proprement.
-            Et je sais quand poser les bonnes questions.
+            À travers mes projets et mon cours de conception d'interfaces (SEG3525),
+            j'apprends à concevoir des expériences plus centrées sur l'utilisateur
+            tout en gardant une base technique solide.
           </p>
 
-          <!-- Stack technique -->
+          <!-- Stack technique réduite -->
           <h3 class="h6 text-primary text-uppercase fw-semibold mb-3 letter-spacing">
             Stack technique
           </h3>
           <div class="d-flex flex-wrap gap-2 mb-4">
-            <span class="skill-badge">Java</span>
-            <span class="skill-badge">Python</span>
-            <span class="skill-badge">JavaScript</span>
-            <span class="skill-badge">SQL</span>
             <span class="skill-badge">React</span>
             <span class="skill-badge">Django</span>
-            <span class="skill-badge">REST APIs</span>
             <span class="skill-badge">PostgreSQL</span>
-            <span class="skill-badge">MySQL</span>
-            <span class="skill-badge">Git / GitHub</span>
-            <span class="skill-badge">Bootstrap 5</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">Java</span>
+            <span class="skill-badge">Git</span>
+            <span class="skill-badge">GitHub</span>
             <span class="skill-badge">HTML / CSS</span>
-            <span class="skill-badge">MVC</span>
-            <span class="skill-badge">OOP / SOLID</span>
-            <span class="skill-badge">UML</span>
-            <span class="skill-badge">Linux / Unix</span>
           </div>
 
-          <!-- Liens sociaux -->
           <div class="d-flex gap-4 align-items-center">
             <a href="https://github.com/Aubelin" class="social-link d-flex align-items-center gap-2" target="_blank" rel="noopener">
               <i class="bi bi-github fs-5"></i>
@@ -207,7 +175,7 @@
           </div>
         </div>
 
-        <!-- Statistiques identitaires V2 — avec icônes -->
+        <!-- Stats -->
         <div class="col-lg-4">
           <div class="row g-3">
             <div class="col-6">
@@ -247,72 +215,83 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
-       SECTION PHILOSOPHIE DE TRAVAIL  (#work)
+       MON PROFIL TECHNIQUE
        Exigence du devoir : façon de travailler + formation
-       Reframing : pas un cours — une identité de développeur
+       3 domaines : Backend · Frontend · UI/UX Learning
        Équilibre : 3 colonnes égales — symétrique
   ════════════════════════════════════════════════════════════════ -->
   <section id="work" class="py-section">
     <div class="container">
 
       <div class="section-header text-center mb-5">
-        <h2 class="section-title">Comment je travaille</h2>
+        <h2 class="section-title">Mon profil technique</h2>
         <div class="section-divider mx-auto"></div>
-        <p class="text-muted mt-3 mx-auto" style="max-width:540px;">
-          Pas seulement ce que je sais faire — mais comment je pense,
-          comment j'apprends, et pourquoi ça compte.
-        </p>
       </div>
 
       <div class="row g-4">
 
-        <!-- Principe 1 : Ingénieur qui pense produit -->
+        <!-- Carte 1 — Backend Development -->
         <div class="col-md-4">
-          <div class="feature-card h-100 p-4 animate-on-scroll">
+          <div class="feature-card h-100 p-4 animate-on-scroll d-flex flex-column">
             <div class="feature-icon mb-3">
-              <i class="bi bi-lightbulb-fill fs-1"></i>
+              <i class="bi bi-server fs-1"></i>
             </div>
-            <h3 class="h5 fw-bold mb-3">Ingénieur qui pense produit</h3>
-            <p class="mb-0">
-              Je ne livre pas du code. Je livre des fonctionnalités que
-              les gens utilisent réellement. Avant d'écrire une ligne,
-              je me demande : <em>à quel problème est-ce que ça répond ?</em>
-              Cette question change l'architecture, le design,
-              les priorités.
+            <h3 class="h5 fw-bold mb-3">Backend Development</h3>
+            <p class="mb-3 flex-grow-1">
+              Je développe des APIs et des systèmes backend avec Django,
+              PostgreSQL et Python. J'aime construire des bases solides,
+              organiser les données correctement et créer des applications
+              fiables et évolutives.
             </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Django</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">REST APIs</span>
+            </div>
           </div>
         </div>
 
-        <!-- Principe 2 : Les deux côtés du spectre -->
+        <!-- Carte 2 — Frontend Development -->
         <div class="col-md-4">
-          <div class="feature-card h-100 p-4 animate-on-scroll">
+          <div class="feature-card h-100 p-4 animate-on-scroll d-flex flex-column">
             <div class="feature-icon mb-3">
-              <i class="bi bi-layout-text-sidebar-reverse fs-1"></i>
+              <i class="bi bi-window-split fs-1"></i>
             </div>
-            <h3 class="h5 fw-bold mb-3">Les deux côtés du spectre</h3>
-            <p class="mb-0">
-              Je comprends pourquoi un bouton est au mauvais endroit.
-              Et je sais comment le corriger dans le code. Cette double
-              lecture — ingénierie et expérience utilisateur — c'est
-              ce que j'apprends à combiner à travers mes cours et
-              mes projets.
+            <h3 class="h5 fw-bold mb-3">Frontend Development</h3>
+            <p class="mb-3 flex-grow-1">
+              Je crée des interfaces web modernes avec React, JavaScript
+              et CSS. Je m'intéresse particulièrement à la clarté des
+              interfaces et à l'expérience utilisateur.
             </p>
+            <div class="tech-tags">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML / CSS</span>
+            </div>
           </div>
         </div>
 
-        <!-- Principe 3 : Apprendre en construisant -->
+        <!-- Carte 3 — UI/UX Learning -->
         <div class="col-md-4">
-          <div class="feature-card h-100 p-4 animate-on-scroll">
+          <div class="feature-card h-100 p-4 animate-on-scroll d-flex flex-column">
             <div class="feature-icon mb-3">
-              <i class="bi bi-hammer fs-1"></i>
+              <i class="bi bi-vector-pen fs-1"></i>
             </div>
-            <h3 class="h5 fw-bold mb-3">Apprendre en construisant</h3>
-            <p class="mb-0">
-              Je n'attends pas qu'on m'enseigne quelque chose pour
-              m'y lancer. J'ai appris React, Django et PostgreSQL
-              ensemble en construisant une vraie application de zéro.
-              Pour moi, l'apprentissage commence quand je touche le code.
+            <h3 class="h5 fw-bold mb-3">UI/UX Learning</h3>
+            <p class="mb-3 flex-grow-1">
+              À travers mon cours de conception d'interfaces (SEG3525),
+              j'apprends les principes de design centré utilisateur,
+              la hiérarchie visuelle et l'évaluation heuristique.
+              Mon objectif est de mieux connecter technique et
+              expérience utilisateur.
             </p>
+            <div class="tech-tags">
+              <span class="tech-tag">UX Principles</span>
+              <span class="tech-tag">User-Centered Design</span>
+              <span class="tech-tag">Heuristics</span>
+              <span class="tech-tag">Wireframing</span>
+            </div>
           </div>
         </div>
 
@@ -322,10 +301,9 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
-       SECTION 4 ÉTUDES DE CAS  (#cases)
+       PROJETS DE DESIGN
        Exigence du devoir : 4 cartes cliquables → pages placeholder
-       V2 : question UX centrale comme description — case study framing
-       Échelle : badges, titres et textes à tailles différenciées
+       Style : minimaliste, descriptions courtes et claires
   ════════════════════════════════════════════════════════════════ -->
   <section id="cases" class="py-section bg-section-alt">
     <div class="container">
@@ -333,9 +311,8 @@
       <div class="section-header text-center mb-5">
         <h2 class="section-title">Projets de design</h2>
         <div class="section-divider mx-auto"></div>
-        <p class="text-muted mt-3 mx-auto" style="max-width:560px;">
-          Quatre interfaces conçues ce semestre dans SEG3525 —
-          chaque carte pose la question de design centrale du projet.
+        <p class="text-muted mt-3 mx-auto" style="max-width:480px;">
+          Quatre interfaces conçues dans le cadre du cours SEG3525.
         </p>
       </div>
 
@@ -354,14 +331,13 @@
               <div class="card-body p-4">
                 <span class="badge mb-2" style="background:#667eea;">Design 1</span>
                 <h5 class="card-title fw-bold mb-2">Salon de coiffure</h5>
-                <p class="card-problem small mb-0">
-                  <i class="bi bi-question-circle me-1 text-primary"></i>
-                  Comment rendre la réservation aussi simple que possible pour quelqu'un qui n'utilise pas d'apps ?
+                <p class="card-text small mb-0">
+                  Interface de réservation conçue dans le cadre du cours SEG3525.
                 </p>
               </div>
               <div class="card-footer-custom px-4 pb-4">
                 <span class="text-primary small fw-semibold">
-                  Voir l'étude <i class="bi bi-arrow-right ms-1"></i>
+                  Voir le projet <i class="bi bi-arrow-right ms-1"></i>
                 </span>
               </div>
             </div>
@@ -381,14 +357,13 @@
               <div class="card-body p-4">
                 <span class="badge mb-2" style="background:#11998e;">Design 2</span>
                 <h5 class="card-title fw-bold mb-2">Jeu de mémoire</h5>
-                <p class="card-problem small mb-0">
-                  <i class="bi bi-question-circle me-1 text-primary"></i>
-                  Qu'est-ce qui rend un jeu addictif ? Retour visuel, progression, récompense immédiate.
+                <p class="card-text small mb-0">
+                  Projet d'interface interactive centré sur l'expérience utilisateur.
                 </p>
               </div>
               <div class="card-footer-custom px-4 pb-4">
                 <span class="text-primary small fw-semibold">
-                  Voir l'étude <i class="bi bi-arrow-right ms-1"></i>
+                  Voir le projet <i class="bi bi-arrow-right ms-1"></i>
                 </span>
               </div>
             </div>
@@ -408,14 +383,13 @@
               <div class="card-body p-4">
                 <span class="badge mb-2" style="background:#f5576c;">Design 3</span>
                 <h5 class="card-title fw-bold mb-2">Boutique en ligne</h5>
-                <p class="card-problem small mb-0">
-                  <i class="bi bi-question-circle me-1 text-primary"></i>
-                  Pourquoi 70&nbsp;% des paniers sont abandonnés — et comment y répondre par le design.
+                <p class="card-text small mb-0">
+                  Conception d'une expérience e-commerce moderne et intuitive.
                 </p>
               </div>
               <div class="card-footer-custom px-4 pb-4">
                 <span class="text-primary small fw-semibold">
-                  Voir l'étude <i class="bi bi-arrow-right ms-1"></i>
+                  Voir le projet <i class="bi bi-arrow-right ms-1"></i>
                 </span>
               </div>
             </div>
@@ -435,14 +409,13 @@
               <div class="card-body p-4">
                 <span class="badge mb-2" style="background:#00c6fb;">Design 4</span>
                 <h5 class="card-title fw-bold mb-2">Analyse &amp; Visualisation</h5>
-                <p class="card-problem small mb-0">
-                  <i class="bi bi-question-circle me-1 text-primary"></i>
-                  Peut-on rendre des données complexes compréhensibles en moins de 5 secondes ?
+                <p class="card-text small mb-0">
+                  Dashboard et visualisation de données conçus pour améliorer la lisibilité.
                 </p>
               </div>
               <div class="card-footer-custom px-4 pb-4">
                 <span class="text-primary small fw-semibold">
-                  Voir l'étude <i class="bi bi-arrow-right ms-1"></i>
+                  Voir le projet <i class="bi bi-arrow-right ms-1"></i>
                 </span>
               </div>
             </div>
@@ -455,19 +428,17 @@
 
 
   <!-- ═══════════════════════════════════════════════════════════════
-       SECTION CTA FINALE  (#contact)
-       Identité forte, appel direct, disponibilité co-op
+       CONTACT
   ════════════════════════════════════════════════════════════════ -->
   <section id="contact" class="py-section cta-section">
     <div class="container text-center">
-      <span class="badge cta-badge mb-4">Disponible · Automne 2026</span>
+      <span class="badge cta-badge mb-4">Co-op · Automne 2026</span>
       <h2 class="fw-bold mb-3 cta-heading">
-        Je cherche une équipe qui construit<br>
-        <span class="text-primary">des produits qui comptent.</span>
+        Construisons quelque chose<br>
+        <span class="text-primary">ensemble.</span>
       </h2>
-      <p class="lead cta-sub mx-auto mb-5">
-        Co-op Fall 2026 — Développement logiciel, full-stack ou QA.
-        Ottawa ou remote. Bilingue FR/EN.
+      <p class="cta-sub mx-auto mb-5">
+        Disponible pour discuter de projets, design et développement web.
       </p>
       <div class="d-flex justify-content-center gap-3 flex-wrap">
         <a href="mailto:bennyaublin@gmail.com" class="btn btn-primary btn-lg px-4">
@@ -509,9 +480,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- JS personnalisé -->
   <script src="js/main.js"></script>
 
 </body>

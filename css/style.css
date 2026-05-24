@@ -226,13 +226,21 @@ a:hover { color: var(--color-primary-dark); }
   50%       { opacity: 0; }
 }
 
+/* Sous-titre hero — statique, sobre */
+.hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
 /* Tagline signature */
 .hero-tagline {
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.7vw, 1.1rem);
   color: var(--color-text);
-  max-width: 520px;
-  line-height: 1.65;
-  opacity: 0.88;
+  max-width: 500px;
+  line-height: 1.7;
+  opacity: 0.82;
 }
 
 /* Photo de profil circulaire avec bordure accent */
@@ -361,8 +369,31 @@ a:hover { color: var(--color-primary-dark); }
 
 
 /* ════════════════════════════════════════════════════════════════
-   9. CARTES "COMMENT JE TRAVAILLE" — Feature cards
+   9. CARTES "MON PROFIL TECHNIQUE" — Feature cards + tech-tags
 ════════════════════════════════════════════════════════════════ */
+
+/* Tags technologiques à l'intérieur des cartes domaines */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.18rem 0.6rem;
+  border-radius: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--color-text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.02em;
+}
+
+
 .feature-card {
   background: var(--color-card);
   border: 1px solid rgba(255, 255, 255, 0.06);
