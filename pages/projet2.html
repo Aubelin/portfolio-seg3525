@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Design 2 – Jeu de mémoire | Portfolio Benny Aubelin Cubahiro</title>
+  <title>CardMind – Jeu de mémoire | Portfolio Benny Aubelin Cubahiro</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,28 +11,113 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
-    .coming-hero {
-      min-height: 65vh;
+    .hero-section {
+      min-height: 60vh;
       display: flex;
       align-items: center;
-      background: radial-gradient(ellipse at 60% 40%, rgba(17,153,142,.14) 0%, transparent 65%), var(--color-dark);
+      background: radial-gradient(ellipse at 60% 40%, rgba(17,153,142,.15) 0%, transparent 65%), var(--color-dark);
     }
-    .timeline { display: flex; gap: 0; }
-    .t-step { flex: 1; text-align: center; position: relative; }
-    .t-step::after {
-      content: ''; position: absolute; top: 18px; left: 50%;
-      width: 100%; height: 2px; background: rgba(255,255,255,.1);
+    .demo-card {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
     }
-    .t-step:last-child::after { display: none; }
-    .t-dot {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: #1e2a45; border: 2px solid rgba(255,255,255,.15);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto .5rem; font-weight: 700; font-size: .85rem; transition: all .3s;
+    .persona-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 1.5rem;
+      transition: border-color .2s;
     }
-    .t-dot.done    { background: #E94F37; border-color: #E94F37; }
-    .t-dot.current { background: transparent; border-color: #E94F37; color: #E94F37; }
-    .t-label { font-size: .78rem; color: var(--color-text-muted); }
+    .persona-card:hover { border-color: rgba(255,255,255,.18); }
+    .persona-zen {
+      border-top: 3px solid #D4845A;
+    }
+    .persona-adv {
+      border-top: 3px solid #00D4FF;
+    }
+    .concept-pill {
+      display: inline-block;
+      padding: .25rem .75rem;
+      border-radius: 99px;
+      font-size: .75rem;
+      font-weight: 600;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      margin: .2rem;
+    }
+    .screen-preview {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .screen-zen {
+      background: #FFF8F0;
+      color: #2C2C2C;
+      padding: 1.5rem;
+      font-family: Georgia, serif;
+    }
+    .screen-adv {
+      background: #0D0F14;
+      color: #E2E8F0;
+      padding: 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .mini-card {
+      width: 44px; height: 44px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin: 3px;
+    }
+    .zen-card-back { background: #D4845A; color: white; }
+    .zen-card-front { background: #FFF8F0; border: 2px solid #D4845A; }
+    .adv-card-back { background: #1E2D3D; border: 1px solid #00D4FF; }
+    .adv-card-front { background: #0D1F2D; border: 1px solid #10B981; }
+    .tag-gestalt { background: rgba(0,212,255,.12); color: #00D4FF; }
+    .tag-cognition { background: rgba(16,185,129,.12); color: #10B981; }
+    .tag-persona { background: rgba(212,132,90,.15); color: #D4845A; }
+    .btn-launch {
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      padding: .75rem 2rem;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: transform .15s, opacity .15s;
+    }
+    .btn-launch:hover { transform: translateY(-2px); color: #000; opacity: .9; }
+    .btn-storyboard {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.85);
+      border-radius: 10px;
+      padding: .7rem 1.5rem;
+      font-size: .9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      transition: border-color .15s;
+    }
+    .btn-storyboard:hover { border-color: rgba(255,255,255,.5); color: white; }
+    .feature-badge {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .section-divider { border-color: rgba(255,255,255,.07); margin: 0; }
   </style>
 </head>
 <body>
@@ -45,42 +130,138 @@
     </div>
   </nav>
 
-  <section class="coming-hero pt-5">
+  <!-- Hero -->
+  <section class="hero-section pt-5">
     <div class="container">
       <div class="row align-items-center g-5">
-
         <div class="col-lg-7">
           <span class="badge px-3 py-2 mb-3" style="background:#11998e; font-size:.85rem;">
-            Design 2 · Jeu interactif
+            Devoir 3 · Jeu de cognition · React + Vite
           </span>
-          <h1 class="fw-bold mb-3">Jeu de mémoire<br>— à venir</h1>
-          <p class="lead mb-4" style="color:var(--color-text-muted);">
-            Conception d'un jeu de mémorisation interactif en JavaScript vanilla.
-            L'interface devra être engageante, accessible, avec un retour visuel
-            clair sur les succès et les erreurs du joueur.
+          <h1 class="fw-bold mb-3">🃏 CardMind</h1>
+          <p class="lead mb-2" style="color:var(--color-text-muted);">
+            Jeu de paires adaptatif conçu selon les principes de <strong style="color:white;">cognition humaine</strong> —
+            deux modes distincts pour deux personas aux besoins opposés.
           </p>
+          <p class="mb-4 small" style="color:var(--color-text-muted);">
+            Chaque décision de design est justifiée par les lois Gestalt, les principes d'attention
+            et de mémoire vus en SEG3525.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="https://silly-sherbet-df8552.netlify.app" target="_blank" class="btn-launch">
+              <i class="bi bi-play-fill"></i> Lancer CardMind
+            </a>
+            <a href="http://localhost:3133/scenarimage-a.html" target="_blank" class="btn-storyboard">
+              <i class="bi bi-layout-text-sidebar"></i> Scénarimage A — Léa
+            </a>
+            <a href="http://localhost:3133/scenarimage-b.html" target="_blank" class="btn-storyboard">
+              <i class="bi bi-layout-text-sidebar"></i> Scénarimage B — Marcus
+            </a>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="concept-pill">⚛ React 18</span>
+            <span class="concept-pill">⚡ Vite</span>
+            <span class="concept-pill">🎨 Dual-mode CSS</span>
+            <span class="concept-pill">🧠 Cognition humaine</span>
+            <span class="concept-pill">🃏 CSS 3D flip</span>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center">
+          <div class="demo-card">
+            <div style="font-size:4rem;">🃏</div>
+            <div>
+              <p class="text-dark fw-bold mb-1" style="font-size:1.1rem;">CardMind</p>
+              <p class="text-dark small mb-0" style="opacity:.7;">Entraîne ta mémoire, à ton rythme</p>
+            </div>
+            <a href="https://silly-sherbet-df8552.netlify.app" target="_blank" class="btn-launch" style="font-size:.85rem; padding:.5rem 1.25rem;">
+              <i class="bi bi-play-fill"></i> Jouer maintenant
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <h2 class="h6 fw-semibold text-primary text-uppercase letter-spacing mb-3">Objectifs de ce design</h2>
-          <ul class="list-unstyled mb-4">
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Interface de jeu engageante et fun à utiliser</li>
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Retour visuel immédiat (correct / incorrect)</li>
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Score, timer et niveaux de difficulté</li>
-            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>JavaScript vanilla – manipulation DOM directe</li>
-            <li class="mb-2 text-muted"><i class="bi bi-clock me-2"></i>Tests utilisateurs (à venir)</li>
-          </ul>
+  <hr class="section-divider" />
 
-          <a href="../index.html#cases" class="btn btn-outline-light">
-            <i class="bi bi-arrow-left me-2"></i>Retour au portfolio
-          </a>
+  <!-- Personas -->
+  <section class="py-section">
+    <div class="container">
+      <h2 class="h5 fw-bold text-center mb-2">Deux personas, deux expériences</h2>
+      <p class="text-center small mb-5" style="color:var(--color-text-muted);">
+        La même application se transforme selon le niveau choisi — chaque interface justifiée par le profil cognitif du persona.
+      </p>
+      <div class="row g-4">
+
+        <!-- Léa -->
+        <div class="col-md-6">
+          <div class="persona-card persona-zen h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div style="width:48px;height:48px;background:#FFF8F0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">👵</div>
+              <div>
+                <div class="fw-bold">Léa Tremblay</div>
+                <div class="small" style="color:var(--color-text-muted);">67 ans · Retraitée · Novice tech</div>
+              </div>
+              <span class="ms-auto badge" style="background:#D4845A;">Mode Zen</span>
+            </div>
+            <div class="screen-preview screen-zen mb-3">
+              <div style="font-size:.8rem;font-weight:700;color:#D4845A;margin-bottom:.75rem;">🃏 CardMind</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:.5rem;">
+                <div class="mini-card zen-card-back">✦</div>
+                <div class="mini-card zen-card-front">🐶</div>
+                <div class="mini-card zen-card-front">🐶</div>
+                <div class="mini-card zen-card-back">✦</div>
+                <div class="mini-card zen-card-back">✦</div>
+                <div class="mini-card zen-card-back">✦</div>
+              </div>
+              <div style="font-size:.7rem;color:#7BAE7F;background:#7BAE7F22;padding:.4rem .75rem;border-radius:99px;text-align:center;">✓ Paire trouvée !</div>
+            </div>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><span class="concept-pill tag-gestalt">Gestalt</span> Région commune — cartes regroupées dans un conteneur unique</li>
+              <li class="mb-2"><span class="concept-pill tag-cognition">Mémoire</span> Grille 4×4 sans minuterie — charge cognitive réduite</li>
+              <li class="mb-2"><span class="concept-pill tag-persona">Persona</span> Palette crème/terracotta — sentiment de sécurité, zéro stress</li>
+              <li><span class="concept-pill tag-cognition">Attention</span> Débutant pré-sélectionné — reconnaissance > rappel</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="col-lg-5 text-center">
-          <div class="d-inline-flex align-items-center justify-content-center rounded-4 p-5"
-               style="background:linear-gradient(135deg,#11998e,#38ef7d);min-width:260px;min-height:260px;">
-            <div>
-              <i class="bi bi-grid-3x3-gap-fill" style="font-size:5.5rem;color:rgba(255,255,255,.9);"></i>
-              <p class="mt-3 text-white fw-semibold mb-0">Jeu de mémoire</p>
+        <!-- Marcus -->
+        <div class="col-md-6">
+          <div class="persona-card persona-adv h-100">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div style="width:48px;height:48px;background:#0D1F2D;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">👨‍💻</div>
+              <div>
+                <div class="fw-bold">Marcus Osei</div>
+                <div class="small" style="color:var(--color-text-muted);">24 ans · Étudiant génie info · Gamer</div>
+              </div>
+              <span class="ms-auto badge" style="background:#00D4FF;color:#000;">Mode Avancé</span>
             </div>
+            <div class="screen-preview screen-adv mb-3">
+              <div style="display:flex;justify-content:space-between;font-size:.7rem;margin-bottom:.75rem;">
+                <span style="color:#00D4FF;font-weight:700;font-family:monospace;">// CARDMIND</span>
+                <span style="background:#7C3AED;color:white;padding:.15rem .5rem;border-radius:4px;font-size:.65rem;">AVANCÉ · TECHNO</span>
+              </div>
+              <div style="display:flex;gap:1rem;font-size:.7rem;margin-bottom:.75rem;">
+                <div><div style="color:#00D4FF;font-weight:700;font-family:monospace;">2:31</div><div style="color:#64748B;">// Timer</div></div>
+                <div><div style="color:white;font-weight:700;">6</div><div style="color:#64748B;">// Paires</div></div>
+                <div><div style="color:white;font-weight:700;">18</div><div style="color:#64748B;">// Essais</div></div>
+                <div><div style="color:#10B981;font-weight:700;">67%</div><div style="color:#64748B;">// Précision</div></div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:3px;">
+                <div class="mini-card adv-card-back" style="width:34px;height:34px;font-size:.9rem;">◈</div>
+                <div class="mini-card adv-card-front" style="width:34px;height:34px;font-size:.9rem;">💻</div>
+                <div class="mini-card adv-card-front" style="width:34px;height:34px;font-size:.9rem;">💻</div>
+                <div class="mini-card adv-card-back" style="width:34px;height:34px;font-size:.9rem;">◈</div>
+                <div class="mini-card adv-card-back" style="width:34px;height:34px;font-size:.9rem;">◈</div>
+                <div class="mini-card adv-card-back" style="width:34px;height:34px;font-size:.9rem;">◈</div>
+              </div>
+            </div>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><span class="concept-pill tag-gestalt">Gestalt</span> Continuité — HUD horizontal en ligne de commande</li>
+              <li class="mb-2"><span class="concept-pill tag-cognition">Attention</span> Timer proéminent (urgence cognitive) — objectif performance</li>
+              <li class="mb-2"><span class="concept-pill tag-persona">Persona</span> Dark mode + monospace — culture gaming & développeur</li>
+              <li><span class="concept-pill tag-cognition">Mémoire</span> Grille 6×6 + stats détaillées — stimulation analytique</li>
+            </ul>
           </div>
         </div>
 
@@ -88,16 +269,73 @@
     </div>
   </section>
 
+  <hr class="section-divider" />
+
+  <!-- Features -->
   <section class="py-section bg-section-alt">
     <div class="container">
-      <h2 class="h5 fw-bold text-center mb-5">Étapes du projet</h2>
-      <div class="timeline">
-        <div class="t-step"><div class="t-dot done"><i class="bi bi-check2"></i></div><div class="t-label">Analyse</div></div>
-        <div class="t-step"><div class="t-dot current">2</div><div class="t-label">Recherche usager</div></div>
-        <div class="t-step"><div class="t-dot">3</div><div class="t-label">Wireframes</div></div>
-        <div class="t-step"><div class="t-dot">4</div><div class="t-label">Prototype</div></div>
-        <div class="t-step"><div class="t-dot">5</div><div class="t-label">Tests</div></div>
-        <div class="t-step"><div class="t-dot">6</div><div class="t-label">Livraison</div></div>
+      <h2 class="h5 fw-bold text-center mb-5">Fonctionnalités du prototype</h2>
+      <div class="row g-3">
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-badge h-100">
+            <div class="mb-2" style="font-size:1.5rem;">🎨</div>
+            <div class="fw-semibold mb-1 small">Dual-mode adaptatif</div>
+            <div class="small" style="color:var(--color-text-muted);">CSS dynamique : mode Zen (crème) ou Avancé (dark) selon le niveau sélectionné</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-badge h-100">
+            <div class="mb-2" style="font-size:1.5rem;">🃏</div>
+            <div class="fw-semibold mb-1 small">Flip 3D CSS</div>
+            <div class="small" style="color:var(--color-text-muted);">Animation CSS3 transform-style preserve-3d, backface-visibility hidden</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-badge h-100">
+            <div class="mb-2" style="font-size:1.5rem;">⏱</div>
+            <div class="fw-semibold mb-1 small">Meilleur temps persisté</div>
+            <div class="small" style="color:var(--color-text-muted);">localStorage par combinaison niveau×thème, badge ⚡ NOUVEAU RECORD affiché</div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="feature-badge h-100">
+            <div class="mb-2" style="font-size:1.5rem;">🧩</div>
+            <div class="fw-semibold mb-1 small">3 thèmes × 2 niveaux</div>
+            <div class="small" style="color:var(--color-text-muted);">Animaux, Nature, Techno — Débutant (4×4) ou Avancé (6×6 + minuterie 3:00)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Scénarimages -->
+  <section class="py-section">
+    <div class="container text-center">
+      <h2 class="h5 fw-bold mb-2">Scénarimages UX</h2>
+      <p class="small mb-4" style="color:var(--color-text-muted);">
+        Chaque scénarimage documente 3 écrans (Config → Jeu → Résultats) avec justifications Gestalt et cognition par élément.
+      </p>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+          <div class="persona-card persona-zen p-4 text-start">
+            <div class="fw-bold mb-1">📋 Scénarimage A — Léa Tremblay</div>
+            <div class="small mb-3" style="color:var(--color-text-muted);">Design Zen · Palette crème/terracotta · Serif</div>
+            <a href="http://localhost:3133/scenarimage-a.html" target="_blank" class="btn-storyboard" style="font-size:.85rem;">
+              <i class="bi bi-box-arrow-up-right"></i> Ouvrir le scénarimage
+            </a>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="persona-card persona-adv p-4 text-start">
+            <div class="fw-bold mb-1">📋 Scénarimage B — Marcus Osei</div>
+            <div class="small mb-3" style="color:var(--color-text-muted);">Design Avancé · Dark mode · Monospace</div>
+            <a href="http://localhost:3133/scenarimage-b.html" target="_blank" class="btn-storyboard" style="font-size:.85rem;">
+              <i class="bi bi-box-arrow-up-right"></i> Ouvrir le scénarimage
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
