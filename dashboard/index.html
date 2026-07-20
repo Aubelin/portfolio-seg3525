@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prix des aliments — Tableau de bord | Benny A. Cubahiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --color-primary:#E94F37;
+    --color-primary-dark:#c0392b;
+    --color-dark:#1A1A2E;
+    --color-dark-alt:#16213E;
+    --color-card:#0F3460;
+    --color-text:#E0E0E0;
+    --color-text-muted:#9E9E9E;
+    --color-heading:#FFFFFF;
+    --color-accent2:#00c6fb;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--color-dark);color:var(--color-text);font-family:'Inter',sans-serif;}
+  h1,h2,h3{font-family:'Poppins',sans-serif;color:var(--color-heading);margin:0;}
+  a{color:var(--color-primary);}
+  .top{position:sticky;top:0;z-index:10;background:rgba(26,26,46,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .back{color:var(--color-text-muted);text-decoration:none;font-size:.9rem;font-weight:600;}
+  .back:hover{color:var(--color-primary);}
+  .langsw{display:flex;gap:4px;background:var(--color-card);border-radius:8px;padding:4px;}
+  .langsw button{border:none;background:transparent;color:var(--color-text-muted);padding:6px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:.82rem;letter-spacing:.03em;}
+  .langsw button.active{background:var(--color-primary);color:#fff;}
+  main{max-width:1080px;margin:0 auto;padding:48px 24px 80px;}
+  .hero{margin-bottom:12px;}
+  .badge{display:inline-block;background:var(--color-accent2);color:#06202b;font-weight:700;font-size:.72rem;padding:4px 12px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px;}
+  .hero h1{font-size:2rem;margin-bottom:10px;}
+  .hero p{color:var(--color-text-muted);max-width:640px;line-height:1.6;font-size:.98rem;}
+  .synth{display:inline-flex;gap:8px;align-items:center;background:rgba(233,79,55,.12);border:1px solid rgba(233,79,55,.4);color:#f5a99a;font-size:.8rem;padding:8px 14px;border-radius:8px;margin-top:16px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;}
+  @media(max-width:820px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--color-card);border-radius:14px;padding:24px;border:1px solid rgba(255,255,255,.06);}
+  .card h2{font-size:1.05rem;margin-bottom:4px;}
+  .ctx{color:var(--color-text-muted);font-size:.83rem;margin-bottom:16px;line-height:1.5;}
+  .controls{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .controls button{border:1px solid rgba(255,255,255,.15);background:var(--color-dark-alt);color:var(--color-text);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;cursor:pointer;transition:.15s;}
+  .controls button.active{background:var(--color-primary);border-color:var(--color-primary);color:#fff;}
+  .chartwrap{position:relative;height:280px;}
+  footer{text-align:center;padding:28px;color:var(--color-text-muted);font-size:.8rem;border-top:1px solid rgba(255,255,255,.06);}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const T = {
+  fr: {
+    back: "Retour au portfolio",
+    title: "Prix des aliments — Tableau de bord interactif",
+    intro: "Ce tableau de bord explore l'évolution et la comparaison des prix de légumes frais au Canada, à l'aide de deux types de graphiques complémentaires.",
+    synthetic: "⚠ Données synthétiques générées à des fins pédagogiques (SEG3525, Devoir 5) — ne représentent pas des prix réels de Statistique Canada.",
+    lineTitle: "Évolution du prix — Tomates (2019–2024)",
+    lineCtx: "Un graphique linéaire est utilisé car il permet de suivre une tendance dans le temps pour un seul produit.",
+    barTitle: "Comparaison des prix par légume (2024)",
+    barCtx: "Un graphique à barres est utilisé car il permet de comparer facilement plusieurs catégories à un instant donné.",
+    cad: "Dollar canadien (CAD)", eur: "Euro (EUR)",
+    kg: "Par kilogramme", lb: "Par livre",
+    axisPrice: "Prix", axisYear: "Année",
+    tomatoes: "Tomates", broccoli: "Brocoli", cucumber: "Concombre",
+    footer: "Devoir 5 — SEG3525 · Benny Aubelin Cubahiro"
+  },
+  en: {
+    back: "Back to portfolio",
+    title: "Food Prices — Interactive Dashboard",
+    intro: "This dashboard explores the evolution and comparison of fresh vegetable prices in Canada, using two complementary chart types.",
+    synthetic: "⚠ Synthetic data generated for educational purposes (SEG3525, Assignment 5) — does not represent real Statistics Canada prices.",
+    lineTitle: "Price evolution — Tomatoes (2019–2024)",
+    lineCtx: "A line chart is used because it best shows a trend over time for a single product.",
+    barTitle: "Price comparison by vegetable (2024)",
+    barCtx: "A bar chart is used because it makes it easy to compare several categories at a single point in time.",
+    cad: "Canadian dollar (CAD)", eur: "Euro (EUR)",
+    kg: "Per kilogram", lb: "Per pound",
+    axisPrice: "Price", axisYear: "Year",
+    tomatoes: "Tomatoes", broccoli: "Broccoli", cucumber: "Cucumber",
+    footer: "Assignment 5 — SEG3525 · Benny Aubelin Cubahiro"
+  }
+};
+
+const YEARS = [2019,2020,2021,2022,2023,2024];
+const TOMATO_CAD = [3.20,3.45,3.70,4.35,4.80,5.10];
+const EUR_RATE = 0.68;
+const VEG_2024_KG = { tomatoes: 5.10, broccoli: 3.85, cucumber: 2.95 };
+const KG_TO_LB = 0.4536;
+
+const ACCENT = "#E94F37";
+const ACCENT2 = "#00c6fb";
+
+function useChart(canvasRef, config, deps){
+  const chartRef = React.useRef(null);
+  React.useEffect(() => {
+    if (chartRef.current) chartRef.current.destroy();
+    chartRef.current = new Chart(canvasRef.current.getContext('2d'), config);
+    return () => { if (chartRef.current) chartRef.current.destroy(); };
+  }, deps);
+}
+
+function LineCard({ t }) {
+  const [currency, setCurrency] = React.useState('cad');
+  const canvasRef = React.useRef(null);
+  const values = currency === 'cad' ? TOMATO_CAD : TOMATO_CAD.map(v => +(v * EUR_RATE).toFixed(2));
+  const symbol = currency === 'cad' ? '$' : '€';
+
+  useChart(canvasRef, {
+    type: 'line',
+    data: {
+      labels: YEARS,
+      datasets: [{
+        label: t.tomatoes,
+        data: values,
+        borderColor: ACCENT,
+        backgroundColor: 'rgba(233,79,55,.12)',
+        pointBackgroundColor: ACCENT,
+        borderWidth: 3,
+        tension: .3,
+        fill: true,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (c) => symbol + c.parsed.y.toFixed(2) } }
+      },
+      scales: {
+        x: { title: { display: true, text: t.axisYear, color: '#9E9E9E' }, grid: { display: false }, ticks: { color: '#9E9E9E' } },
+        y: { title: { display: true, text: t.axisPrice + ' (' + symbol + ')', color: '#9E9E9E' }, grid: { color: 'rgba(255,255,255,.06)' }, ticks: { color: '#9E9E9E' } }
+      }
+    }
+  }, [currency, t]);
+
+  return React.createElement('div', { className: 'card' },
+    React.createElement('h2', null, t.lineTitle),
+    React.createElement('p', { className: 'ctx' }, t.lineCtx),
+    React.createElement('div', { className: 'controls' },
+      React.createElement('button', { className: currency === 'cad' ? 'active' : '', onClick: () => setCurrency('cad') }, t.cad),
+      React.createElement('button', { className: currency === 'eur' ? 'active' : '', onClick: () => setCurrency('eur') }, t.eur)
+    ),
+    React.createElement('div', { className: 'chartwrap' },
+      React.createElement('canvas', { ref: canvasRef })
+    )
+  );
+}
+
+function BarCard({ t }) {
+  const [unit, setUnit] = React.useState('kg');
+  const canvasRef = React.useRef(null);
+  const labels = [t.tomatoes, t.broccoli, t.cucumber];
+  const raw = [VEG_2024_KG.tomatoes, VEG_2024_KG.broccoli, VEG_2024_KG.cucumber];
+  const values = unit === 'kg' ? raw : raw.map(v => +(v * KG_TO_LB).toFixed(2));
+  const unitLabel = unit === 'kg' ? t.kg : t.lb;
+
+  useChart(canvasRef, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        backgroundColor: [ACCENT, ACCENT2, '#4facfe'],
+        borderRadius: 6,
+        maxBarThickness: 56
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (c) => '$' + c.parsed.y.toFixed(2) } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#9E9E9E' } },
+        y: { title: { display: true, text: unitLabel, color: '#9E9E9E' }, grid: { color: 'rgba(255,255,255,.06)' }, ticks: { color: '#9E9E9E' } }
+      }
+    }
+  }, [unit, t]);
+
+  return React.createElement('div', { className: 'card' },
+    React.createElement('h2', null, t.barTitle),
+    React.createElement('p', { className: 'ctx' }, t.barCtx),
+    React.createElement('div', { className: 'controls' },
+      React.createElement('button', { className: unit === 'kg' ? 'active' : '', onClick: () => setUnit('kg') }, t.kg),
+      React.createElement('button', { className: unit === 'lb' ? 'active' : '', onClick: () => setUnit('lb') }, t.lb)
+    ),
+    React.createElement('div', { className: 'chartwrap' },
+      React.createElement('canvas', { ref: canvasRef })
+    )
+  );
+}
+
+function App() {
+  const [lang, setLang] = React.useState('fr');
+  const t = T[lang];
+  return React.createElement(React.Fragment, null,
+    React.createElement('div', { className: 'top' },
+      React.createElement('a', { className: 'back', href: '../pages/projet4.html' }, '← ' + t.back),
+      React.createElement('div', { className: 'langsw' },
+        React.createElement('button', { className: lang === 'fr' ? 'active' : '', onClick: () => setLang('fr') }, 'Français'),
+        React.createElement('button', { className: lang === 'en' ? 'active' : '', onClick: () => setLang('en') }, 'English')
+      )
+    ),
+    React.createElement('main', null,
+      React.createElement('div', { className: 'hero' },
+        React.createElement('span', { className: 'badge' }, 'Devoir 5 · Dashboard'),
+        React.createElement('h1', null, t.title),
+        React.createElement('p', null, t.intro),
+        React.createElement('div', { className: 'synth' }, t.synthetic)
+      ),
+      React.createElement('div', { className: 'grid' },
+        React.createElement(LineCard, { t: t }),
+        React.createElement(BarCard, { t: t })
+      )
+    ),
+    React.createElement('footer', null, t.footer)
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+</script>
+</body>
+</html>
